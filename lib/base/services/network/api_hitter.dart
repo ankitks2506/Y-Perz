@@ -1,7 +1,3 @@
-// import 'package:dio/dio.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart'as getx;
 // import 'package:herfat_hamza/base/constant/api_endpoint.dart';
 // import 'package:herfat_hamza/base/constant/name_constant.dart';
 // import 'package:herfat_hamza/base/controller/get_paid_controller.dart';
