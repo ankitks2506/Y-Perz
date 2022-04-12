@@ -54,10 +54,10 @@ extension CustomWidget on Widget {
   containerDecoration(
       {EdgeInsetsGeometry? margin,
       EdgeInsetsGeometry? padding,
-      Color backgroundColor: Colors.white,
-      double radius: 8,
-      double width: 1,
-      Color? borderColor: const Color(0xff0B7AD)}) {
+      Color backgroundColor = Colors.white,
+      double radius = 8,
+      double width = 1,
+      Color? borderColor = const Color(0xff0B70AD)}) {
     return Container(
         child: this,
         margin: margin,

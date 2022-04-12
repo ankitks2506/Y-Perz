@@ -1,17 +1,13 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 Future<bool> checkInternetConnection() async {
-  final result;
+  dynamic result;
   try {
     result = await InternetAddress.lookup('google.com');
     if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -90,7 +86,7 @@ String randomString(int strlen) {
       "ARBAEROMCBHAKJJNKKWROJOAIIAHRAMNSNDFNWNNWNXBFBWFEWUEWBBEUWEWBFBWBZKAKKNAKNBWWARAHNAKNAN";
   var numeric = "1234567890987654321123451234567890678900987654321";
 
-  Random rnd = new Random(new DateTime.now().millisecondsSinceEpoch);
+  Random rnd = Random(DateTime.now().millisecondsSinceEpoch);
   String result = "";
   for (var i = 1; i < strlen + 1; i++) {
     if (i % 2 == 0) {

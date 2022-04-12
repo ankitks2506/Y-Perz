@@ -3,7 +3,9 @@ import 'package:y_perz/common/app_theme.dart';
 import 'package:y_perz/common/common_widgets.dart';
 import 'package:y_perz/extensions/util_extensions.dart';
 import 'package:y_perz/helper/helper_class.dart';
+import 'package:y_perz/views/auth/forgot_password.dart';
 import 'package:y_perz/views/auth/signup_screen.dart';
+import 'package:y_perz/views/home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -95,22 +97,29 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           10.verticalSpace(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: const [
-                              Text(
-                                "Forgot Password?",
-                                style: TextStyle(
-                                  color: AppTheme.accentColor,
+                          GestureDetector(
+                            onTap: () {
+                            const ForgotPasswordScreen().navigate();
+                          },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: const [
+                                Text(
+                                  "Forgot Password?",
+                                  style: TextStyle(
+                                    color: AppTheme.accentColor,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           30.verticalSpace(),
                           myButton(
                             context: context,
                             text: "Login",
-                            onTap: () {},
+                            onTap: () {
+                              const HomeScreen().navigate();
+                            },
                           ),
                           20.verticalSpace(),
                           GestureDetector(

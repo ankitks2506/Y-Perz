@@ -3,6 +3,7 @@ import 'package:y_perz/common/app_theme.dart';
 import 'package:y_perz/common/common_widgets.dart';
 import 'package:y_perz/extensions/util_extensions.dart';
 import 'package:y_perz/helper/helper_class.dart';
+import 'package:y_perz/views/auth/otp_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -145,10 +146,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     30.verticalSpace(),
+
                     myButton(
+                      onTap: () {
+                        const OtpScreen(true).navigate();
+                      },
                       context: context,
                       text: "Create",
-                      onTap: () {},
                     ),
                     20.verticalSpace(),
                     Row(
