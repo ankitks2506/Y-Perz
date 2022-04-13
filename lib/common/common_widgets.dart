@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:y_perz/common/alert_dialog_box.dart';
 import 'package:y_perz/common/app_theme.dart';
 import 'package:y_perz/extensions/util_extensions.dart';
 import 'package:y_perz/helper/helper_class.dart';
@@ -30,35 +32,92 @@ Widget myButton({
   );
 }
 
-Widget customTextField(
-  TextEditingController controller,
-) {
-  return TextFormField(
-    showCursor: false,
-    cursorColor: AppTheme.accentColor,
-    controller: controller,
-    decoration: InputDecoration(
-      contentPadding: 10.paddingAll(),
-      fillColor: AppTheme.accentColor,
-      hintText: "Password",
-      hintStyle: const TextStyle(
+Widget editTextField(TextEditingController controller, bool isPasVisible,
+    String hint, bool _passwordVisible,
+    {Function? onPressed,
+    int? length,
+    int maxLines = 1,
+    bool enableNumber = false,
+    Widget? suffixWidget,
+    ValueChanged<String>? onFieldSubmitted,
+    ValueChanged<String>? onChanged,
+    bool enabled = true}) {
+  return Container(
+    margin: 10.marginTop(),
+    decoration: const BoxDecoration(
+      border: Border(
+        bottom: BorderSide(
+          color: Colors.white,
+          width: 1,
+        ),
+      ),
+    ),
+    child: TextFormField(
+      showCursor: false,
+      enabled: enabled,
+      controller: controller,
+      inputFormatters: [LengthLimitingTextInputFormatter(length)],
+      textInputAction: TextInputAction.next,
+      textAlignVertical: TextAlignVertical.center,
+      obscureText: isPasVisible ? !_passwordVisible : false,
+      keyboardType: enableNumber ? TextInputType.number : null,
+      maxLines: maxLines,
+      onChanged: (value) {
+        if (onChanged != null) onChanged(value);
+      },
+      onFieldSubmitted: (value) {
+        if (onFieldSubmitted != null) onFieldSubmitted(value);
+      },
+      decoration: InputDecoration(
+        contentPadding: 15.paddingOnly(top: 15, bottom: 15),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        border: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        hintText: hint,
+        hintStyle: const TextStyle(
+          fontSize: 15,
+          color: Colors.white,
+        ),
+        suffixIcon: isPasVisible
+            ? IconButton(
+                icon: Icon(
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  onPressed!();
+                },
+              )
+            : null,
+        suffix: suffixWidget,
+      ),
+      style: const TextStyle(
+        fontSize: 15,
         color: Colors.white,
       ),
-      enabledBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: AppTheme.accentColor,
-        ),
-      ),
-      focusedBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: AppTheme.accentColor,
-        ),
-      ),
-      border: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: AppTheme.accentColor,
-        ),
-      ),
+    ),
+  );
+}
+
+validationDialog(String title, BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context1) => AlertDialogBox(
+      title: title,
+      description: "",
+      myContext: context,
     ),
   );
 }
